@@ -1,0 +1,116 @@
+$block_size: 5px;
+
+$tires-color: #777;
+$body-color: #ccc;
+$gun-color: #333;
+
+$arena-bgcolor: #fff;
+
+body {
+	//background-color: #eee;
+}
+
+.arena {
+	width: 750px;
+	height: 450px;
+	//border: $block_size solid #faa;
+	background-color: $arena-bgcolor;
+	position: relative;
+	overflow: hidden;
+}
+
+%tank-before {
+	content: '';
+	display: block;
+	background-color: $body-color;
+	border: 0 solid $tires-color;
+	position: absolute;
+}
+
+%tank-after {
+	content: '';
+	display: block;
+	position: absolute;
+	background-color: $gun-color;
+}
+
+.tank {
+	width: 5 * $block_size;
+	height: 5 * $block_size;
+	background-color: transparent;
+
+	position: relative;
+	top: 200px;
+	left: 200px;
+
+	&.up {
+		&:before {
+			@extend %tank-before;
+			width: 3*$block_size;
+			height: 4*$block_size;
+			border-width: 0 $block_size 0 $block_size;
+			margin-top: $block_size;
+		}
+
+		&:after {
+			@extend %tank-after;
+			width: $block_size;
+			height: 4*$block_size;
+			margin: 0 2*$block_size $block_size 2*$block_size;
+		}
+	}
+
+	&.right {
+		&:before {
+			@extend %tank-before;
+			width: 4*$block_size;
+			height: 3*$block_size;
+			border-width: $block_size 0 $block_size 0;
+			margin-right: $block_size;
+		}
+
+		&:after {
+			@extend %tank-after;
+			width: 4*$block_size;
+			height: $block_size;
+			margin: 2*$block_size 0 2*$block_size $block_size;
+		}
+	}
+
+	&.down {
+		&:before {
+			@extend %tank-before;
+			width: 3*$block_size;
+			height: 4*$block_size;
+			border-width: 0 $block_size 0 $block_size;
+			margin-bottom: $block_size;
+		}
+
+		&:after {
+			@extend %tank-after;
+			width: $block_size;
+			height: 4*$block_size;
+			margin: $block_size 2*$block_size 0 2*$block_size;
+		}
+	}
+
+	&.left {
+		&:before {
+			@extend %tank-before;
+			width: 4*$block_size;
+			height: 3*$block_size;
+			border-width: $block_size 0 $block_size 0;
+			margin-left: $block_size;
+		}
+
+		&:after {
+			@extend %tank-after;
+			width: 4*$block_size;
+			height: $block_size;
+			margin: 2*$block_size $block_size 2*$block_size 0;
+		}
+	}
+
+
+
+}

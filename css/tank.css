@@ -1,0 +1,63 @@
+.arena {
+  width: 750px;
+  height: 450px;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden; }
+
+.tank.up:before, .tank.right:before, .tank.down:before, .tank.left:before {
+  content: '';
+  display: block;
+  background-color: #ccc;
+  border: 0 solid #777;
+  position: absolute; }
+
+.tank.up:after, .tank.right:after, .tank.down:after, .tank.left:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background-color: #333; }
+
+.tank {
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  position: relative;
+  top: 200px;
+  left: 200px; }
+  .tank.up:before {
+    width: 15px;
+    height: 20px;
+    border-width: 0 5px 0 5px;
+    margin-top: 5px; }
+  .tank.up:after {
+    width: 5px;
+    height: 20px;
+    margin: 0 10px 5px 10px; }
+  .tank.right:before {
+    width: 20px;
+    height: 15px;
+    border-width: 5px 0 5px 0;
+    margin-right: 5px; }
+  .tank.right:after {
+    width: 20px;
+    height: 5px;
+    margin: 10px 0 10px 5px; }
+  .tank.down:before {
+    width: 15px;
+    height: 20px;
+    border-width: 0 5px 0 5px;
+    margin-bottom: 5px; }
+  .tank.down:after {
+    width: 5px;
+    height: 20px;
+    margin: 5px 10px 0 10px; }
+  .tank.left:before {
+    width: 20px;
+    height: 15px;
+    border-width: 5px 0 5px 0;
+    margin-left: 5px; }
+  .tank.left:after {
+    width: 20px;
+    height: 5px;
+    margin: 10px 5px 10px 0; }

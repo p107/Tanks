@@ -1,0 +1,129 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/tank.css">
+</head>
+<body>
+<div class="arena">
+
+	<div class="tank up"></div>
+
+</div>
+<script>
+
+$(function(){
+
+	var tank = {};
+	tank.direction = 1;
+	tank.onMove = false;
+	tank.x = $('.tank').css('left');
+	tank.y = $('.tank').css('top');
+
+	function moveForward(tank) {
+
+		switch (tank.direction) {
+			case 1:
+				// up on arena
+				var top = $('.tank').css('top');
+				$('.tank').css('top', (parseInt(top) - 1) + 'px');
+				break;
+
+			case 2:
+				// right on arena
+				var left = $('.tank').css('left');
+				$('.tank').css('left', (parseInt(left) + 1) + 'px');
+				break;
+
+			case 3:
+				// down on arena
+				var top = $('.tank').css('top');
+				$('.tank').css('top', (parseInt(top) + 1) + 'px');
+				break;
+
+			case 4:
+				// left on arena
+				var left = $('.tank').css('left');
+				$('.tank').css('left', (parseInt(left) - 1) + 'px');
+				break;
+
+		}
+	}
+
+	function rotate(tank) {
+		switch (tank.direction) {
+			case 1:
+				$('.tank').removeClass('left right down').addClass('up');
+				break;
+
+			case 2:
+				$('.tank').removeClass('left up down').addClass('right');
+				break;
+
+			case 3:
+				$('.tank').removeClass('left up right').addClass('down');
+				break;
+
+			case 4:
+				$('.tank').removeClass('down up right').addClass('left');
+				break;
+		}
+	}
+
+	var gameLoop = function(){
+		if (tank.onMove) {
+			moveForward(tank);
+		}
+
+		setTimeout(gameLoop, 30);
+	};
+
+	$(document).keyup(function(e){
+		
+		if (e.keyCode == 38) {
+			//up (forward)
+			tank.onMove = false;
+		}
+
+		if (e.keyCode == 37) {
+			//left
+			tank.direction -= 1;
+			if (tank.direction < 1) {
+				tank.direction = 4;
+			}
+			rotate(tank);
+		}
+
+		if (e.keyCode == 39) {
+			//right
+			tank.direction += 1;
+			if (tank.direction > 4) {
+				tank.direction = 1;
+			}
+			rotate(tank);
+		}
+	});
+
+	$(document).keydown(function(e) {
+		if (e.keyCode == 38) {
+			tank.onMove = true;
+			//moveForward(tank);
+		}
+		if (e.keyCode == 40) {
+			//down
+		}
+
+	});
+
+	/*
+	left = 37
+	up = 38
+	right = 39
+	down = 40
+	*/
+
+	gameLoop();
+
+});
+
+</script>
+</body>
